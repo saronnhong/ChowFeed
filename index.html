@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Chow Feed</title>
+</head>
+
+<body>
+    <script>
+        function yelpCall(yelpSearch) {
+            //var yelpSearch = "coffee";
+            var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+ yelpSearch + "&location=sandiego&sort_by=rating";
+
+            $.ajax({
+                url: queryURL,
+                headers: {
+                    'Authorization': 'Bearer k5B2o56mcAHxciwOt2ZfMkycA27iEJXTcgKa4Nl4dgJsMC1dfeD-az31R-2U_qhHAn91iU_hVcb75hVFDFq8y7kslgCTTW_CAuAc_c2XvRdsZj10800YMCu8VX75XHYx',
+                },
+                method: "GET"
+            }).then(function (response) {
+                for (var i=0; i < 10; i++)
+                console.log(response);
+                console.log(response.businesses[i].name);
+                console.log(response.businesses[i].image_url);
+                console.log(response.businesses[i].url);   //url to Yelp
+            });
+            
+        }
+        yelpCall(yelpSearch);
+
+    </script>
+
+</body>
+
+</html>
