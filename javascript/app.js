@@ -18,7 +18,7 @@ $("#searchButton").on("click", function (event) {
     // search Yelp for restauratn
 
     queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+ searchTerm + "&location=sandiego&sort_by=rating";
-
+console.log(queryURL);
     $.ajax({
         url: queryURL,
         headers: {
