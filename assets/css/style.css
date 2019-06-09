@@ -42,8 +42,6 @@ body{
     top: 350px;
 }
 
-
-
 .btn.btn-primary{
     margin-top: 20px;
     background: red;
@@ -53,5 +51,13 @@ body{
 .btn.btn-primary:hover{
     background: white;
     color: red;
+}
+
+#results {
+    padding: 20px;
+    box-sizing: border-box;
+}
+.card-columns {
+    column-count: 4;
 }
 
