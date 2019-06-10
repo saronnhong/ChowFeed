@@ -142,7 +142,10 @@ function getTrendyRestaurants() {
 
 $(".card").on("click", function() {
     console.log("click img");
+    console.log($(this).attr("recipe-id"));
+    localStorage.setItem("recipeId", $(this).attr("recipe-id"));
+    window.location.href = "recipe.html";
 });
 
 getTrendyRestaurants();
-// getTrendyRecipes();
+getTrendyRecipes();
