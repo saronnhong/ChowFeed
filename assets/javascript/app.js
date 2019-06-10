@@ -6,6 +6,7 @@
 // recipeResults[i].url       : link to the page that has the detail of that recipe.
 var recipeResults = [];
 
+
 //********************************************************/
 // restaurantResults object - list of restaurant from Yelp
 // restaurantResults[i].id        : restuarant id 
@@ -107,9 +108,11 @@ function getTrendyRecipes() {
                 title : currRecipe.title,
                 url : currRecipe.source_url
             };
+            
             recipeResults.push(recipe);
             $("#card-recipe-img"+ (i+1)).attr("src",recipe.image_url);
             $("#card-recipe-title"+ (i+1)).text(recipe.title);
+            alert(recipe.id);
         }
     });
 }
@@ -141,4 +144,4 @@ function getTrendyRestaurants() {
 }
 
 getTrendyRestaurants();
-// getTrendyRecipes();
+getTrendyRecipes();
