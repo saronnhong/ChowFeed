@@ -1,28 +1,9 @@
-<<<<<<< HEAD
-//********************************************************/
-// recipeResults object - list of recipes from food2fork
-// recipeResults[i].id        : recipe id 
-// recipeResutls[i].image_url : link to image url.
-// recipeResults[i].title     : name of the recipe
-// recipeResults[i].url       : link to the page that has the detail of that recipe.
-var recipeResults = [];
-
-
-//********************************************************/
-// restaurantResults object - list of restaurant from Yelp
-// restaurantResults[i].id        : restuarant id 
-// restaurantResults[i].image_url : link to image url.
-// restaurantResults[i].name      : name of the restaurant
-// restaurantResults[i].url       : link to yelp page that has the detail of that restaurant.
-var restaurantResults = [];
-=======
 //  to get data from localStorage
 
 //    var data = localStorage.getItem("recipeList");
  //   recipeList = JSON.parse(data);
   
 
->>>>>>> 4e5b5e8a4bcb2ae98b8a64a7b421192d97606ac3
 
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
@@ -130,7 +111,7 @@ function getTrendyRecipes() {
             $(".recipe"+ (i+1)).attr("recipe-id", recipe.id);
             $("#card-recipe-img"+ (i+1)).attr("src",recipe.image_url);
             $("#card-recipe-title"+ (i+1)).text(recipe.title);
-            alert(recipe.id);
+
         }
     });
 }
