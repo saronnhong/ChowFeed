@@ -87,6 +87,7 @@ $("#search-food-form").on("submit", function (e) {
         localStorage.setItem("restaurantList", JSON.stringify(restaurantResults));
 
     });
+    
 
 });
 
