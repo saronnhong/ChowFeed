@@ -1,18 +1,9 @@
-//********************************************************/
-// recipeResults object - list of recipes from food2fork
-// recipeResults[i].id        : recipe id 
-// recipeResutls[i].image_url : link to image url.
-// recipeResults[i].title     : name of the recipe
-// recipeResults[i].url       : link to the page that has the detail of that recipe.
-var recipeResults = [];
+//  to get data from localStorage
 
-//********************************************************/
-// restaurantResults object - list of restaurant from Yelp
-// restaurantResults[i].id        : restuarant id 
-// restaurantResults[i].image_url : link to image url.
-// restaurantResults[i].name      : name of the restaurant
-// restaurantResults[i].url       : link to yelp page that has the detail of that restaurant.
-var restaurantResults = [];
+//    var data = localStorage.getItem("recipeList");
+ //   recipeList = JSON.parse(data);
+  
+
 
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
@@ -42,16 +33,18 @@ function buildYelpQueryURL(searchStr, limit = -1) {
 }
 
 // Search Button Protocol
-$("#searchButton").on("click", function (event) {
+$("#search-food-form").on("submit", function (e) {
+    e.preventDefault();
+    localStorage.clear();
     var searchTerm = $("#searchFood").val();
-    /*
+    
     var queryURL = buildRecipeQueryURL( searchTerm );
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         var recipeResponse = JSON.parse(response);
-        recipeResults = [];
+        var recipeResults = [];
         for(var i=0; i<recipeResponse.recipes.length; i++) {
             var currRecipe = recipeResponse.recipes[i];
             var recipe = {
@@ -64,7 +57,8 @@ $("#searchButton").on("click", function (event) {
 
         }
         // console.log(recipeResults);
-    }); */
+        localStorage.setItem("recipeList", JSON.stringify(recipeResults));
+    }); 
 
     queryURL = buildYelpQueryURL( searchTerm );
     $.ajax({
@@ -75,7 +69,7 @@ $("#searchButton").on("click", function (event) {
         method: "GET"
     }).then(function (response) {
         // console.log(response);
-        restaurantResults = [];
+        var restaurantResults = [];
         for(var i=0; i<response.businesses.length && i<10; i++) {
             var currRest = response.businesses[i];
             var restaurant = {
@@ -87,8 +81,13 @@ $("#searchButton").on("click", function (event) {
             restaurantResults.push(restaurant);
 
         }
-        // console.log(restaurantResults);
+          // save to local storage
+
+        
+        localStorage.setItem("restaurantList", JSON.stringify(restaurantResults));
+
     });
+
 });
 
 function getTrendyRecipes() {
@@ -108,6 +107,7 @@ function getTrendyRecipes() {
                 url : currRecipe.source_url
             };
             recipeResults.push(recipe);
+            $(".recipe"+ (i+1)).attr("recipe-id", recipe.id);
             $("#card-recipe-img"+ (i+1)).attr("src",recipe.image_url);
             $("#card-recipe-title"+ (i+1)).text(recipe.title);
         }
@@ -133,12 +133,16 @@ function getTrendyRestaurants() {
                 url : currRest.url
             };
             restaurantResults.push(restaurant);
-
+            $(".restaurant"+ (i+1)).attr("restaurant-id", restaurant.id);
             $("#card-rest-img"+ (i+1)).attr("src",restaurant.image_url);
             $("#card-rest-title"+ (i+1)).text(restaurant.name);
         }
     });
 }
+
+$(".card").on("click", function() {
+    console.log("click img");
+});
 
 getTrendyRestaurants();
 // getTrendyRecipes();
