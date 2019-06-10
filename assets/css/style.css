@@ -55,3 +55,6 @@ body{
     color: red;
 }
 
+#recipePage{
+    display: none;
+}
