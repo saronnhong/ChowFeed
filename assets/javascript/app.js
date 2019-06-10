@@ -33,11 +33,15 @@ function buildYelpQueryURL(searchStr, limit = -1) {
 }
 
 // Search Button Protocol
+// onclick='window.location.href = "results.html";'
+
+
 $("#search-food-form").on("submit", function (e) {
     e.preventDefault();
+    
     localStorage.clear();
     var searchTerm = $("#searchFood").val();
-    
+    /*
     var queryURL = buildRecipeQueryURL( searchTerm );
     $.ajax({
         url: queryURL,
@@ -59,7 +63,7 @@ $("#search-food-form").on("submit", function (e) {
         // console.log(recipeResults);
         localStorage.setItem("recipeList", JSON.stringify(recipeResults));
     }); 
-
+*/
     queryURL = buildYelpQueryURL( searchTerm );
     $.ajax({
         url: queryURL,
@@ -87,7 +91,7 @@ $("#search-food-form").on("submit", function (e) {
         localStorage.setItem("restaurantList", JSON.stringify(restaurantResults));
 
     });
-    
+    window.location.href = "results.html"
 
 });
 
@@ -145,5 +149,3 @@ $(".card").on("click", function() {
     console.log("click img");
 });
 
-getTrendyRestaurants();
-// getTrendyRecipes();
