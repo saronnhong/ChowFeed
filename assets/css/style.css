@@ -78,6 +78,11 @@ body{
     object-fit: cover;
 }
 
+.faves{
+    float: right;
+    margin-bottom: 20px;
+}
+
 /* responsive control */
 
 @media only screen and (max-width: 800px) {
