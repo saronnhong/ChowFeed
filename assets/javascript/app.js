@@ -8,7 +8,7 @@
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
   
-    var queryParams = { "key": "bb406a742ced5a8a94ef92e03ff0b5c2" };
+    var queryParams = { "key": "394f5fbd8aa51b48b9cf6a6de815c765" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -68,7 +68,7 @@ $("#search-food-form").on("submit", function (e) {
         },
         method: "GET"
     }).then(function (response) {
-        // console.log(response);
+        console.log(response);
         var restaurantResults = [];
         for(var i=0; i<response.businesses.length && i<10; i++) {
             var currRest = response.businesses[i];
@@ -145,9 +145,10 @@ function getTrendyRestaurants() {
 $(".card").on("click", function() {
     console.log("click img");
     console.log($(this).attr("recipe-id"));
+    localStorage.setItem("restaurantId", $(this).attr("restaurant-id"));
     localStorage.setItem("recipeId", $(this).attr("recipe-id"));
     window.location.href = "recipe.html";
 });
 
 getTrendyRestaurants();
-getTrendyRecipes();
+//getTrendyRecipes();
