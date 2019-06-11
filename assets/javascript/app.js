@@ -101,18 +101,33 @@ function getTrendyRecipes() {
     });
 }
 
-$(".card").on("click", function() {
-    if ($(this).attr("data-type")==="recipe") {
+$(".card-img-top").on("click", function() {
+    console.log($(this).parent().attr("data-type"))
+    if ($(this).parent().attr("data-type")==="recipe") {
         console.log("click recipe id = " + $(this).attr("recipe-id"));
-        localStorage.setItem("recipeId", $(this).attr("recipe-id"));
+        localStorage.setItem("recipeId", $(this).parent().attr("recipe-id"));
         window.location.href = "recipe.html";
     } else {
         console.log("click restaurant id = " + $(this).attr("restaurant-id"));
-        localStorage.setItem("restaurantId", $(this).attr("restaurant-id"));
+        localStorage.setItem("restaurantId", $(this).parent().attr("restaurant-id"));
+        console.log(this);
         window.location.href = "restaurant.html";
     }
 
 });
+
+var favObj = {}, faveObjArray = [];
+
+
+
+$(".faves").on("click", function() {
+    $(this).html("<i class='fas fa-heart'></i>");
+    favObj.image = $(this).parent().attr("image_url");
+    favObj.title = $(this).parent().attr("title");
+    favObj.restaurantId = $(this).parent().attr("image_url");
+    faveObjArray.push(favObj);
+    console.log(faveObjArray);
+})
 
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
