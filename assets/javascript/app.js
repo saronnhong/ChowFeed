@@ -111,7 +111,7 @@ $(".card-img-top").on("click", function() {
         console.log("click restaurant id = " + $(this).attr("restaurant-id"));
         localStorage.setItem("restaurantId", $(this).parent().attr("restaurant-id"));
         console.log(this);
-        // window.location.href = "restaurant.html";
+        window.location.href = "restaurant.html";
     }
 
 });
