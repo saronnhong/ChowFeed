@@ -109,7 +109,7 @@ $(".card").on("click", function() {
     } else {
         console.log("click restaurant id = " + $(this).attr("restaurant-id"));
         localStorage.setItem("restaurantId", $(this).attr("restaurant-id"));
-        // window.location.href = "recipe.html";
+        window.location.href = "restaurant.html";
     }
 
 });
