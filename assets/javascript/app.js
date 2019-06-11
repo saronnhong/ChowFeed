@@ -1,7 +1,7 @@
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
   
-    var queryParams = { "key": "2a996bdd7f224360d3b46f891e23fc2e" };
+    var queryParams = { "key": "394f5fbd8aa51b48b9cf6a6de815c765" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -101,21 +101,29 @@ function getTrendyRecipes() {
     });
 }
 
-$(".card").on("click", function() {
-    if ($(this).attr("data-type")==="recipe") {
+$(".card-img-top").on("click", function() {
+    console.log($(this).parent().attr("data-type"))
+    if ($(this).parent().attr("data-type")==="recipe") {
         console.log("click recipe id = " + $(this).attr("recipe-id"));
-        localStorage.setItem("recipeId", $(this).attr("recipe-id"));
+        localStorage.setItem("recipeId", $(this).parent().attr("recipe-id"));
         window.location.href = "recipe.html";
     } else {
         console.log("click restaurant id = " + $(this).attr("restaurant-id"));
-        localStorage.setItem("restaurantId", $(this).attr("restaurant-id"));
+        localStorage.setItem("restaurantId", $(this).parent().attr("restaurant-id"));
+        console.log(this);
         window.location.href = "restaurant.html";
     }
 
 });
 
+$(".faves").on("click", function() {
+    $(this).html("<i class='fas fa-heart'></i>");
+})
+
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
 populateRestaurants("trendy restaurant", 4);
 populateRecipes("");
+
+
 
