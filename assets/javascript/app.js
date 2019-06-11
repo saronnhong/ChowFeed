@@ -111,13 +111,22 @@ $(".card-img-top").on("click", function() {
         console.log("click restaurant id = " + $(this).attr("restaurant-id"));
         localStorage.setItem("restaurantId", $(this).parent().attr("restaurant-id"));
         console.log(this);
-        window.location.href = "restaurant.html";
+        // window.location.href = "restaurant.html";
     }
 
 });
 
+var favObj = {}, faveObjArray = [];
+
+
+
 $(".faves").on("click", function() {
     $(this).html("<i class='fas fa-heart'></i>");
+    favObj.image = $(this).parent().attr("image_url");
+    favObj.title = $(this).parent().attr("title");
+    favObj.restaurantId = $(this).parent().attr("image_url");
+    faveObjArray.push(favObj);
+    console.log(faveObjArray);
 })
 
 $("#result-restaurant-header").text("Trendy Restaurants");
