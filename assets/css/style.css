@@ -17,7 +17,7 @@ body{
 
 .jumbotron.jumbotron-fluid{
     opacity: 0.8;
-    height: 900px;
+    height: 100%;
 }
 
 #logo{
@@ -50,29 +50,19 @@ body{
     background: red;
     border: none;
     position: relative;
-    top: -200px;
-    left: 700px;
+    top: 10px;
+    left: 500px;
 }
 
 .btn.btn-primary:hover{
     background: white;
     color: red;
     position:relative;
-    top: -200px;
-    left: 700px;
+    top: 10px;
+    left: 500px;
 }
 
-#searchFood{
-    position:relative;
-    top: -200px;
-    left: 200px;
-}
 
-label{
-    position: relative;
-    top: -210px;
-    left: 200px;
-}
 
 #results {
     padding: 20px;
