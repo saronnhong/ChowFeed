@@ -76,7 +76,7 @@ $("#search-food-form").on("submit", function (e) {
 });
 
 function getTrendyRecipes() {
-    var queryURL = buildRecipeQueryURL(  );
+    var queryURL = buildRecipeQueryURL("");
     $.ajax({
         url: queryURL,
         method: "GET"
