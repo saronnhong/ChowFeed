@@ -1,7 +1,7 @@
 function buildRecipeQueryURL(searchStr) {
-     var queryURL = "https://www.food2fork.com/api/search?";
-  
-    var queryParams = { "key": "2a996bdd7f224360d3b46f891e23fc2e" };
+    var queryURL = "https://www.food2fork.com/api/search?";
+    var queryParams = { "key": "bb406a742ced5a8a94ef92e03ff0b5c2" };
+
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -109,7 +109,7 @@ $(".card").on("click", function() {
     } else {
         console.log("click restaurant id = " + $(this).attr("restaurant-id"));
         localStorage.setItem("restaurantId", $(this).attr("restaurant-id"));
-        // window.location.href = "recipe.html";
+        window.location.href = "restaurant.html";
     }
 
 });
