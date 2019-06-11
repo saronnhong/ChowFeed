@@ -1,7 +1,7 @@
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
   
-    var queryParams = { "key": "bb406a742ced5a8a94ef92e03ff0b5c2" };
+    var queryParams = { "key": "394f5fbd8aa51b48b9cf6a6de815c765" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -91,10 +91,12 @@ function getTrendyRecipes() {
                 title : currRecipe.title,
                 url : currRecipe.source_url
             };
+            
             recipeResults.push(recipe);
             $(".recipe"+ (i+1)).attr("recipe-id", recipe.id);
             $("#card-recipe-img"+ (i+1)).attr("src",recipe.image_url);
             $("#card-recipe-title"+ (i+1)).text(recipe.title);
+
         }
     });
 }
