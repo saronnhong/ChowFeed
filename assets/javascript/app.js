@@ -1,7 +1,7 @@
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
   
-    var queryParams = { "key": "2a996bdd7f224360d3b46f891e23fc2e" };
+    var queryParams = { "key": "394f5fbd8aa51b48b9cf6a6de815c765" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -118,4 +118,5 @@ $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
 populateRestaurants("trendy restaurant", 4);
 populateRecipes("");
+
 
