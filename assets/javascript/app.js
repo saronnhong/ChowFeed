@@ -25,7 +25,7 @@ function buildYelpQueryURL(searchStr, limit = -1) {
 }
 
 function populateRecipes(keyword) {
-    var queryURL = buildRecipeQueryURL( "" );
+    var queryURL = buildRecipeQueryURL( keyword );
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -76,7 +76,7 @@ $("#search-food-form").on("submit", function (e) {
 });
 
 function getTrendyRecipes() {
-    var queryURL = buildRecipeQueryURL( "" );
+    var queryURL = buildRecipeQueryURL("");
     $.ajax({
         url: queryURL,
         method: "GET"
