@@ -25,12 +25,12 @@ function buildYelpQueryURL(searchStr, limit = -1) {
 }
 
 function populateRecipes(keyword) {
-    var queryURL = buildRecipeQueryURL( "" );
+    var queryURL = buildRecipeQueryURL( keyword );
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
+        console.log("recipe " + response);
         var recipeResponse = JSON.parse(response);
         for(var i=0; i<recipeResponse.recipes.length; i++) {
             var currRecipe = recipeResponse.recipes[i];
