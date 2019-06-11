@@ -1,0 +1,25 @@
+body{
+    background: url(https://cdn.hipwallpaper.com/i/61/60/YAoKDM.jpg)
+}
+
+.jumbotron.jumbotron-fluid{
+    opacity: 0.8;
+    height: 900px;
+}
+
+#logo{
+    width: 250px;
+}
+
+#lead{
+    font-family: 'Exo 2', sans-serif;
+    font-size: 12px;
+    position: relative;
+    top: -10px;
+    left: 80px;
+}
+
+#title{
+   font-family: 'Exo 2', sans-serif;
+}
+
