@@ -1,7 +1,7 @@
 function buildRecipeQueryURL(searchStr) {
      var queryURL = "https://www.food2fork.com/api/search?";
   
-    var queryParams = { "key": "394f5fbd8aa51b48b9cf6a6de815c765" };
+    var queryParams = { "key": "2a996bdd7f224360d3b46f891e23fc2e" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -76,7 +76,7 @@ $("#search-food-form").on("submit", function (e) {
 });
 
 function getTrendyRecipes() {
-    var queryURL = buildRecipeQueryURL( "" );
+    var queryURL = buildRecipeQueryURL("");
     $.ajax({
         url: queryURL,
         method: "GET"

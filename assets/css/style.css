@@ -49,11 +49,29 @@ body{
     margin-top: 20px;
     background: red;
     border: none;
+    position: relative;
+    top: -200px;
+    left: 700px;
 }
 
 .btn.btn-primary:hover{
     background: white;
     color: red;
+    position:relative;
+    top: -200px;
+    left: 700px;
+}
+
+#searchFood{
+    position:relative;
+    top: -200px;
+    left: 200px;
+}
+
+label{
+    position: relative;
+    top: -210px;
+    left: 200px;
 }
 
 #results {
