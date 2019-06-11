@@ -30,7 +30,8 @@ body{
 
 .container{
   
-    height: 500px;
+    height : 220px;
+    /* height: 500px; */
 }
 
 .form-group{
@@ -38,8 +39,10 @@ body{
     font-family: 'Exo 2', sans-serif;
     width: 600px;
     position: absolute;
-    left: 300px;
-    top: 350px;
+    left : 460px;
+    top : 110px;
+    /* left: 300px; */
+    /* top: 350px; */
 }
 
 .btn.btn-primary{
@@ -79,16 +82,25 @@ label{
     column-count: 4;
 }
 
-#card-rest-img1{
-    height: 165px;
+.card-img-top {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
 }
 
-#card-rest-img3{
-    height: 165px;
+/* responsive control */
+
+@media only screen and (max-width: 800px) {
+    .card-columns {
+        column-count: 2;
+    }
 }
 
-#card-rest-img4{
-    height: 165px;
+@media only screen and (max-width: 600px) {
+    .card-columns {
+        column-count: 1;
+    }
 }
+
 
 
