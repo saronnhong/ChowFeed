@@ -14,7 +14,6 @@ function buildRecipeQueryURL(searchStr) {
     queryParams.q = searchStr;
     queryParams.page = 1;
 
-    //console.log($.param(queryParams));
     return queryURL + $.param(queryParams);
 }
 
@@ -29,7 +28,6 @@ function buildYelpQueryURL(searchStr, limit = -1) {
         queryParams.limit = limit;
     }
 
-    //console.log($.param(queryParams));
     return queryURL + $.param(queryParams);
 }
 
@@ -65,7 +63,6 @@ function populateRestaurants(keyword, limit = -1) {
         },
         method: "GET"
     }).then(function (response) {
-        //console.log(response);
         localStorage.setItem("restList", JSON.stringify(response));
         page = 0;
         displayRestaurants();
@@ -84,15 +81,11 @@ $("#search-food-form").on("submit", function (e) {
 });
 
 $(".card-img-top").on("click", function() {
-    console.log($(this).parent().attr("data-type"))
     if ($(this).parent().attr("data-type") === "recipe") {
-        console.log("click recipe id = " + $(this).attr("recipe-id"));
         localStorage.setItem("recipeId", $(this).parent().attr("recipe-id"));
         window.location.href = "recipe.html";
     } else {
-        console.log("click restaurant id = " + $(this).attr("restaurant-id"));
         localStorage.setItem("restaurantId", $(this).parent().attr("restaurant-id"));
-        console.log(this);
         window.location.href = "restaurant.html";
     }
 
@@ -104,31 +97,31 @@ faveObjArrayRest = [];
 
 
 
-$(".faves").on("click", function () {
-    var faveObjRest = {};
-    var faveObjRecipe = {}
-    // console.log($(this).parent().siblings().attr("src"));
-    // console.log($(this).siblings().text());
-    // console.log($(this).parent().parent().attr("restaurant-id"));
-    $(this).html("<i class='fas fa-heart'></i>");
-    console.log($(this).parent().parent().attr("restaurant-id"));
-    console.log()
-    var faveObjArrayRest = [];
-    for (var i = 0; i < 3; i++) {
-        if ($(this).parent().parent().attr("restaurant-id") === faveObjArrayRest[i].restaurantId) {
-            return;
-        }else{
-            faveObjRest.image = $(this).parent().siblings().attr("src");
-            faveObjRest.title = $(this).siblings().text();
-            faveObjRest.restaurantId = $(this).parent().parent().attr("restaurant-id");
-            faveObjArrayRest.push(faveObjRest);
-            console.log(faveObjArrayRest);
-            var stringedRest = JSON.stringify(faveObjArrayRest);
-            localStorage.setItem("favorites", stringedRest);
-        }
-    }
+// $(".faves").on("click", function () {
+//     var faveObjRest = {};
+//     var faveObjRecipe = {}
+//     // console.log($(this).parent().siblings().attr("src"));
+//     // console.log($(this).siblings().text());
+//     // console.log($(this).parent().parent().attr("restaurant-id"));
+//     $(this).html("<i class='fas fa-heart'></i>");
+//     console.log($(this).parent().parent().attr("restaurant-id"));
+//     console.log()
+//     var faveObjArrayRest = [];
+//     for (var i = 0; i < 3; i++) {
+//         if ($(this).parent().parent().attr("restaurant-id") === faveObjArrayRest[i].restaurantId) {
+//             return;
+//         }else{
+//             faveObjRest.image = $(this).parent().siblings().attr("src");
+//             faveObjRest.title = $(this).siblings().text();
+//             faveObjRest.restaurantId = $(this).parent().parent().attr("restaurant-id");
+//             faveObjArrayRest.push(faveObjRest);
+//             console.log(faveObjArrayRest);
+//             var stringedRest = JSON.stringify(faveObjArrayRest);
+//             localStorage.setItem("favorites", stringedRest);
+//         }
+//     }
 
-});
+// });
 
 
 
@@ -140,7 +133,6 @@ populateRecipes("");
 function displayRestaurants() {
     var restListToUse = localStorage.getItem("restList");
     var restObj = JSON.parse(restListToUse);
-    console.log(page + " " + restObj.businesses.length);
     for (var i = page, j = 1; i < page + 4; i++ , j++) {
         $(".restaurant" + (j)).attr("restaurant-id", restObj.businesses[i].id);
         $("#card-rest-img" + (j)).attr("src", restObj.businesses[i].image_url);
@@ -159,7 +151,6 @@ function displayRecipes() {
     var recipeListToUse = localStorage.getItem("recipeList");
     var recipeObj = JSON.parse(recipeListToUse);
 
-    console.log("recipe num : " + recipeObj.recipes.length);
     for (var i = pageRecipe, j = 1; i < pageRecipe + 4; i++ , j++) {
         $(".recipe" + (j)).attr("recipe-id", recipeObj.recipes[i].recipe_id);
         $("#card-recipe-img" + (j)).attr("src", recipeObj.recipes[i].image_url);
