@@ -4,11 +4,15 @@ body{
 
 .jumbotron.jumbotron-fluid{
     opacity: 0.8;
-    height: 900px;
+    height: 100%;
 }
 
 #logo{
     width: 250px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+
 }
 
 #lead{
@@ -21,5 +25,32 @@ body{
 
 #title{
    font-family: 'Exo 2', sans-serif;
+   font-size: 20px;
+   margin-bottom: 40px;
 }
 
+img{
+    width: 500px;
+    margin-left: 100px;
+}
+
+#ingredients{
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 100px;
+    margin-top: 40px;
+}
+
+#title{
+    margin-left: 100px;
+}
+
+a{
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 100px;
+}
+
+#details{
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 100px;
+    margin-top: 40px;
+}
