@@ -9,7 +9,7 @@ function displayRecipe(title, image, url) {
 displayRecipe();
 
 function showTrendyRecipe(recipeId) {
-    var apiKey = "2a996bdd7f224360d3b46f891e23fc2e";
+    var apiKey = "bb406a742ced5a8a94ef92e03ff0b5c2";
     var queryURL = "https://www.food2fork.com/api/get?key=" + apiKey + "&rId=" + recipeId;
 
     $.ajax({
