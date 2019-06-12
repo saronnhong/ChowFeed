@@ -124,8 +124,7 @@ $(".faves").on("click", function() {
     $(this).html("<i class='fas fa-heart'></i>");
     favObj.image = $(this).parent().attr("image_url");
     favObj.title = $(this).parent().attr("title");
-    console.log(favObj.title);
-    //favObj.restaurantId = $(this).parent().attr("image_url");
+    favObj.restaurantId = $(this).parent().attr("image_url");
     faveObjArray.push(favObj);
     console.log(faveObjArray);
 })
