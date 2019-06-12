@@ -1,5 +1,6 @@
 function buildRecipeQueryURL(searchStr) {
     var queryURL = "https://www.food2fork.com/api/search?";
+    var queryParams = { "key": "bb406a742ced5a8a94ef92e03ff0b5c2" };
 
     var queryParams = { "key": "705ea316cb21958e2336fa872f878f61" };
     queryParams.q = searchStr;
@@ -24,6 +25,7 @@ function buildYelpQueryURL(searchStr, limit = -1) {
     return queryURL + $.param(queryParams);
 }
 
+var pageRecipe = 0;
 function populateRecipes(keyword) {
     var queryURL = buildRecipeQueryURL(keyword);
     $.ajax({
@@ -31,18 +33,13 @@ function populateRecipes(keyword) {
         method: "GET"
     }).then(function (response) {
         //console.log(response);
-        var recipeResponse = JSON.parse(response);
-        console.log(recipeResponse);
         localStorage.setItem("recipeList", response);
-        for (var i = 0; i < recipeResponse.recipes.length; i++) {
-            var currRecipe = recipeResponse.recipes[i];
-            $(".recipe" + (i + 1)).attr("recipe-id", currRecipe.recipe_id);
-            $("#card-recipe-img" + (i + 1)).attr("src", currRecipe.image_url);
-            $("#card-recipe-title" + (i + 1)).text(currRecipe.title);
-        }
+        pageRecipe = 0;
+        displayRecipes();
     });
 }
 
+var page = 0;
 // if you don't pass 'limit' when calling this function, it will return 20 restaurants in response.
 function populateRestaurants(keyword, limit = -1) {
     queryURL = buildYelpQueryURL(keyword, limit);
@@ -55,17 +52,10 @@ function populateRestaurants(keyword, limit = -1) {
     }).then(function (response) {
         //console.log(response);
         localStorage.setItem("restList", JSON.stringify(response));
-        for (var i = 0; i < response.businesses.length && i < 10; i++) {
-            var currRest = response.businesses[i];
-            $(".restaurant" + (i + 1)).attr("restaurant-id", currRest.id);
-            $("#card-rest-img" + (i + 1)).attr("src", currRest.image_url);
-            $("#card-rest-title" + (i + 1)).text(currRest.name);
-        }
+        page = 0;
+        displayRestaurants();
     });
 }
-// Search Button Protocol
-// onclick='window.location.href = "results.html";'
-
 
 $("#search-food-form").on("submit", function (e) {
     e.preventDefault();
@@ -78,33 +68,7 @@ $("#search-food-form").on("submit", function (e) {
     $("#result-recipe-header").text("Recipes found...");
 });
 
-function getTrendyRecipes() {
-    var queryURL = buildRecipeQueryURL("");
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        var recipeResponse = JSON.parse(response);
-        recipeResults = [];
-        for (var i = 0; i < recipeResponse.recipes.length; i++) {
-            var currRecipe = recipeResponse.recipes[i];
-            var recipe = {
-                id: currRecipe.recipe_id,
-                image_url: currRecipe.image_url,
-                title: currRecipe.title,
-                url: currRecipe.source_url
-            };
-
-            recipeResults.push(recipe);
-            $(".recipe" + (i + 1)).attr("recipe-id", recipe.id);
-            $("#card-recipe-img" + (i + 1)).attr("src", recipe.image_url);
-            $("#card-recipe-title" + (i + 1)).text(recipe.title);
-
-        }
-    });
-}
-
-$(".card-img-top").on("click", function () {
+$(".card-img-top").on("click", function() {
     console.log($(this).parent().attr("data-type"))
     if ($(this).parent().attr("data-type") === "recipe") {
         console.log("click recipe id = " + $(this).attr("recipe-id"));
@@ -158,30 +122,49 @@ $("#result-recipe-header").text("Trendy Recipes");
 populateRestaurants("trendy restaurant");
 populateRecipes("");
 
-
-var page = 0;
-$("#nextButtonRest").on("click", function () {
-    $("#nextButtonRest").attr("numHold", page);
-    page += 4;
+function displayRestaurants() {
     var restListToUse = localStorage.getItem("restList");
     var restObj = JSON.parse(restListToUse);
+    console.log(page + " " + restObj.businesses.length);
     for (var i = page, j = 1; i < page + 4; i++ , j++) {
         $(".restaurant" + (j)).attr("restaurant-id", restObj.businesses[i].id);
         $("#card-rest-img" + (j)).attr("src", restObj.businesses[i].image_url);
         $("#card-rest-title" + (j)).text(restObj.businesses[i].name);
     }
-    
-});
+    page += 4;
+    if (page >= restObj.businesses.length) {
+        page = 0;
+    } else if ((page + 4) > restObj.businesses.length) {
+        page = 0;
+    }
+}
 
-var pageRecipe = 0;
-$("#nextButtonRecipe").on("click", function () {
-    $("#nextButtonRest").attr("numHold", pageRecipe);
-    pageRecipe += 4;
+function displayRecipes() {
+
     var recipeListToUse = localStorage.getItem("recipeList");
     var recipeObj = JSON.parse(recipeListToUse);
+
+    console.log("recipe num : " + recipeObj.recipes.length);
     for (var i = pageRecipe, j = 1; i < pageRecipe + 4; i++ , j++) {
         $(".recipe" + (j)).attr("recipe-id", recipeObj.recipes[i].recipe_id);
         $("#card-recipe-img" + (j)).attr("src", recipeObj.recipes[i].image_url);
         $("#card-recipe-title" + (j)).text(recipeObj.recipes[i].title);
     }
+    pageRecipe += 4;
+    if (pageRecipe >= recipeObj.recipes.length) {
+        pageRecipe = 0;
+    } else if ((pageRecipe + 4) > recipeObj.recipes.length) {
+        pageRecipe = 0;
+    }
+}
+
+$("#nextButtonRest").on("click", function () {
+    $("#nextButtonRest").attr("numHold", page);
+    displayRestaurants();
+});
+
+
+$("#nextButtonRecipe").on("click", function () {
+    $("#nextButtonRest").attr("numHold", pageRecipe);
+    displayRecipes();
 });
