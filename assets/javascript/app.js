@@ -1,7 +1,7 @@
 function buildRecipeQueryURL(searchStr) {
     var queryURL = "https://www.food2fork.com/api/search?";
 
-    var queryParams = { "key": "3ee04fcbd6e3880c4eba29a637c82104" };
+    var queryParams = { "key": "394f5fbd8aa51b48b9cf6a6de815c765" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
@@ -119,20 +119,39 @@ $(".card-img-top").on("click", function () {
 
 });
 
-var favObj = {}, faveObjArray = [];
+
+faveObjArrayRecipe = [];
+faveObjArrayRest = [];
 
 
 
 $(".faves").on("click", function () {
-    console.log($(this).parent().siblings().attr("src"));
-    console.log($(this).siblings().text());
+    var faveObjRest = {};
+    var faveObjRecipe = {}
+    // console.log($(this).parent().siblings().attr("src"));
+    // console.log($(this).siblings().text());
+    // console.log($(this).parent().parent().attr("restaurant-id"));
     $(this).html("<i class='fas fa-heart'></i>");
-    favObj.image = $(this).parent().attr("image_url");
-    favObj.title = $(this).parent().attr("title");
-    favObj.restaurantId = $(this).parent().attr("image_url");
-    faveObjArray.push(favObj);
-    console.log(faveObjArray);
-})
+    console.log($(this).parent().parent().attr("restaurant-id"));
+    console.log()
+    var faveObjArrayRest = [];
+    for (var i = 0; i < 3; i++) {
+        if ($(this).parent().parent().attr("restaurant-id") === faveObjArrayRest[i].restaurantId) {
+            return;
+        }else{
+            faveObjRest.image = $(this).parent().siblings().attr("src");
+            faveObjRest.title = $(this).siblings().text();
+            faveObjRest.restaurantId = $(this).parent().parent().attr("restaurant-id");
+            faveObjArrayRest.push(faveObjRest);
+            console.log(faveObjArrayRest);
+            var stringedRest = JSON.stringify(faveObjArrayRest);
+            localStorage.setItem("favorites", stringedRest);
+        }
+    }
+
+});
+
+
 
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
