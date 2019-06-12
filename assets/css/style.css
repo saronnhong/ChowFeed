@@ -82,7 +82,9 @@ body{
     float: right;
     margin-bottom: 20px;
 }
-
+#nextButtonRest, #nextButtonRecipe {
+    float: right;
+}
 /* responsive control */
 
 @media only screen and (max-width: 800px) {
