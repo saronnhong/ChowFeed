@@ -116,25 +116,30 @@ $(".card-img-top").on("click", function() {
 
 });
 
-var favObj = {}, faveObjArray = [];
+var faveObjRest = {}, faveObjArrayRest = [];
+var faveObjRecipe = {}, faveObjArrayRecipe = [];
+
 
 
 
 $(".faves").on("click", function() {
-    console.log($(this).parent().siblings().attr("src"));
-    console.log($(this).siblings().text());
+    // console.log($(this).parent().siblings().attr("src"));
+    // console.log($(this).siblings().text());
+    // console.log($(this).parent().parent().attr("restaurant-id"));
     $(this).html("<i class='fas fa-heart'></i>");
-    favObj.image = $(this).parent().attr("image_url");
-    favObj.title = $(this).parent().attr("title");
-    favObj.restaurantId = $(this).parent().attr("image_url");
-    faveObjArray.push(favObj);
-    console.log(faveObjArray);
-})
+    faveObjRest.image = $(this).parent().siblings().attr("src");
+    faveObjRest.title = $(this).siblings().text();
+    faveObjRest.restaurantId = $(this).parent().parent().attr("restaurant-id");
+    faveObjArrayRest.push(faveObjRest);
+    // console.log(faveObjArrayRest);
+    console.log(JSON.stringify(faveObjArrayRest));
+    
+});
 
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
 populateRestaurants("trendy restaurant", 4);
-populateRecipes("");
+// populateRecipes("");
 
 
 
