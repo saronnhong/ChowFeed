@@ -5,7 +5,7 @@ function buildRecipeQueryURL(searchStr) {
     queryParams.q = searchStr;
     queryParams.page = 1;
 
-    console.log($.param(queryParams));
+    //console.log($.param(queryParams));
     return queryURL + $.param(queryParams);
 }
 
@@ -20,7 +20,7 @@ function buildYelpQueryURL(searchStr, limit = -1) {
         queryParams.limit = limit;
     }
 
-    console.log($.param(queryParams));
+    //console.log($.param(queryParams));
     return queryURL + $.param(queryParams);
 }
 
@@ -30,8 +30,10 @@ function populateRecipes(keyword) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         var recipeResponse = JSON.parse(response);
+        console.log(recipeResponse);
+        localStorage.setItem("recipeList", response);
         for (var i = 0; i < recipeResponse.recipes.length; i++) {
             var currRecipe = recipeResponse.recipes[i];
             $(".recipe" + (i + 1)).attr("recipe-id", currRecipe.recipe_id);
@@ -51,7 +53,8 @@ function populateRestaurants(keyword, limit = -1) {
         },
         method: "GET"
     }).then(function (response) {
-        console.log(response);
+        //console.log(response);
+        localStorage.setItem("restList", JSON.stringify(response));
         for (var i = 0; i < response.businesses.length && i < 10; i++) {
             var currRest = response.businesses[i];
             $(".restaurant" + (i + 1)).attr("restaurant-id", currRest.id);
@@ -152,8 +155,33 @@ $(".faves").on("click", function () {
 
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
-populateRestaurants("trendy restaurant", 4);
-// populateRecipes("");
+populateRestaurants("trendy restaurant");
+//populateRecipes("");
 
 
+var page = 0;
+$("#nextButtonRest").on("click", function () {
+    $("#nextButtonRest").attr("numHold", page);
+    page += 4;
+    var restListToUse = localStorage.getItem("restList");
+    var restObj = JSON.parse(restListToUse);
+    for (var i = page, j = 1; i < page + 4; i++ , j++) {
+        $(".restaurant" + (j)).attr("restaurant-id", restObj.businesses[i].id);
+        $("#card-rest-img" + (j)).attr("src", restObj.businesses[i].image_url);
+        $("#card-rest-title" + (j)).text(restObj.businesses[i].name);
+    }
+    
+});
 
+var pageRecipe = 0;
+$("#nextButtonRecipe").on("click", function () {
+    $("#nextButtonRest").attr("numHold", pageRecipe);
+    pageRecipe += 4;
+    var recipeListToUse = localStorage.getItem("recipeList");
+    var recipeObj = JSON.parse(recipeListToUse);
+    for (var i = pageRecipe, j = 1; i < pageRecipe + 4; i++ , j++) {
+        $(".recipe" + (j)).attr("recipe-id", recipeObj.recipes[i].recipe_id);
+        $("#card-recipe-img" + (j)).attr("src", recipeObj.recipes[i].image_url);
+        $("#card-recipe-title" + (j)).text(recipeObj.recipes[i].title);
+    }
+});
