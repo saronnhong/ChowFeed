@@ -124,7 +124,8 @@ $(".faves").on("click", function() {
     $(this).html("<i class='fas fa-heart'></i>");
     favObj.image = $(this).parent().attr("image_url");
     favObj.title = $(this).parent().attr("title");
-    favObj.restaurantId = $(this).parent().attr("image_url");
+    console.log(favObj.title);
+    //favObj.restaurantId = $(this).parent().attr("image_url");
     faveObjArray.push(favObj);
     console.log(faveObjArray);
 })
@@ -132,6 +133,6 @@ $(".faves").on("click", function() {
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
 populateRestaurants("trendy restaurant", 4);
-populateRecipes("");
+// populateRecipes("");
 
 
