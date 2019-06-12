@@ -119,7 +119,7 @@ $(".faves").on("click", function () {
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
 populateRestaurants("trendy restaurant");
-populateRecipes("");
+// populateRecipes("");
 
 function displayRestaurants() {
     var restListToUse = localStorage.getItem("restList");
