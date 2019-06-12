@@ -131,9 +131,9 @@ $(".faves").on("click", function() {
     faveObjRest.title = $(this).siblings().text();
     faveObjRest.restaurantId = $(this).parent().parent().attr("restaurant-id");
     faveObjArrayRest.push(faveObjRest);
-    // console.log(faveObjArrayRest);
-    console.log(JSON.stringify(faveObjArrayRest));
-    
+    console.log(faveObjArrayRest);
+    var stringedRest = JSON.stringify(faveObjArrayRest);
+    localStorage.setItem("favorites", stringedRest);
 });
 
 $("#result-restaurant-header").text("Trendy Restaurants");

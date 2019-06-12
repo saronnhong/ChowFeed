@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChowFeed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6b33305948.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="restaurantFaves">
+                    <div class="row">
+                        <div class="card" id="fave0" style="width: 15rem;">
+                            <div id="faveTitle0" class="card-body">
+                            </div>
+                        </div>
+                        <div class="card" id="fave1" style="width: 15rem;">
+                            <div id="faveTitle1" class="card-body">
+                            </div>
+                        </div>
+                        <div class="card" id="fave2" style="width: 15rem;">
+                            <div id="faveTitle2" class="card-body">
+                            </div>
+                        </div>
+                        <div class="card" id="fave3" style="width: 15rem;">
+                            <div id="faveTitle3" class="card-body">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card" id="fave4" style="width: 15rem;">
+                            <div id="faveTitle4" class="card-body">
+                            </div>
+                        </div>
+                        <div class="card" id="fave5" style="width: 15rem;">
+                            <div id="faveTitle5" class="card-body">
+                            </div>
+                        </div>
+                        <div class="card" id="fave6" style="width: 15rem;">
+                            <div id="faveTitle6" class="card-body">
+                            </div>
+                        </div>
+                        <div class="card" id="fave7" style="width: 15rem;">
+                            <div id="faveTitle7" class="card-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var myFavorite = JSON.parse(localStorage.getItem("favorites"))
+        console.log(myFavorite[0].image);
+
+        function displayFavorites() {
+            for (var i = 0; i < myFavorite.length; i++) {
+                // var titleFave = eval(myFavorite[i].title)
+                // $("#restaurantFaves").append("<div class='card' style='width: 18rem;'>");
+                $("#fave" + i).append("<img src='" + myFavorite[i].image + "' class='card-img-top' >");
+                // $("#restaurantFaves").append("<div class='card-body'>");
+                $("#faveTitle" + i).append("<p class='card-text'>" + myFavorite[i].title + "</p>");
+
+            }
+        }
+        displayFavorites();
+    </script>
+</body>
+
+</html>
