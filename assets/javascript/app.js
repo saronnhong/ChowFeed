@@ -73,32 +73,6 @@ $("#search-food-form").on("submit", function (e) {
     $("#result-recipe-header").text("Recipes found...");
 });
 
-function getTrendyRecipes() {
-    var queryURL = buildRecipeQueryURL("");
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        var recipeResponse = JSON.parse(response);
-        recipeResults = [];
-        for(var i=0; i<recipeResponse.recipes.length; i++) {
-            var currRecipe = recipeResponse.recipes[i];
-            var recipe = {
-                id : currRecipe.recipe_id,
-                image_url : currRecipe.image_url,
-                title : currRecipe.title,
-                url : currRecipe.source_url
-            };
-            
-            recipeResults.push(recipe);
-            $(".recipe"+ (i+1)).attr("recipe-id", recipe.id);
-            $("#card-recipe-img"+ (i+1)).attr("src",recipe.image_url);
-            $("#card-recipe-title"+ (i+1)).text(recipe.title);
-
-        }
-    });
-}
-
 $(".card-img-top").on("click", function() {
     console.log($(this).parent().attr("data-type"))
     if ($(this).parent().attr("data-type")==="recipe") {
@@ -114,7 +88,7 @@ $(".card-img-top").on("click", function() {
 
 });
 
-var favObj = {}, faveObjArray = [];
+var  faveObjArray = [];
 
 
 

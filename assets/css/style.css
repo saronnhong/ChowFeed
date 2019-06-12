@@ -76,6 +76,18 @@ body{
     object-fit: cover;
 }
 
+#btn-myrecipe {
+    text-decoration: none;
+    position: absolute;
+    right: 0px;
+    top: -45px;
+    background-color: darkgreen;
+    color: white;
+    border: 2px solid darkgreen;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .faves{
     float: right;
     margin-bottom: 20px;
