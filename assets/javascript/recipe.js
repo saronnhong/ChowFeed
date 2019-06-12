@@ -10,7 +10,6 @@ var currAPI = 0;
 function displayRecipe(title, image, url) {
     $("#title").text(title);
     $("#image").html("<img src='" + image + "'>");
-    //$("#ingredients").text(ingredients);
     $("#url").html("<a href='" + url + "'> Find the Steps Here</a>");
 };
 
@@ -25,21 +24,17 @@ function showTrendyRecipe(recipeId) {
         method: "GET",
     }).then(function (response) {
         var oneRecipeResponse = JSON.parse(response);
-        console.log(oneRecipeResponse);
         displayRecipe(oneRecipeResponse.recipe.title, oneRecipeResponse.recipe.image_url, oneRecipeResponse.recipe.source_url);
-        //console.log(oneRecipeResponse.recipe.ingredients);
+ 
         for (var i = 0; i < oneRecipeResponse.recipe.ingredients.length; i++) {
             $("#ingredients").append("<p>" + oneRecipeResponse.recipe.ingredients[i] + "</p>");
         }
     }).catch( function(err) {
-        console.log("error, key limit");
         currAPI++;
         if (currAPI < F2F_API.length) {
-            console.log("next api key : " + currAPI)
             showTrendyRecipe(recipeId);
         } 
     });
 }
 var storedRecipe = localStorage.getItem("recipeId");
 showTrendyRecipe(storedRecipe);
-//showTrendyRecipe(28924);
