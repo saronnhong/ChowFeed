@@ -121,6 +121,8 @@ var favObj = {}, faveObjArray = [];
 
 
 $(".faves").on("click", function() {
+    console.log($(this).parent().siblings().attr("src"));
+    console.log($(this).siblings().text());
     $(this).html("<i class='fas fa-heart'></i>");
     favObj.image = $(this).parent().attr("image_url");
     favObj.title = $(this).parent().attr("title");
