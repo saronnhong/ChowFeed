@@ -25,6 +25,7 @@ function buildYelpQueryURL(searchStr, limit = -1) {
 }
 
 function populateRecipes(keyword) {
+    return;
     var queryURL = buildRecipeQueryURL( keyword );
     $.ajax({
         url: queryURL,
@@ -128,7 +129,7 @@ $(".faves").on("click", function() {
 
 $("#result-restaurant-header").text("Trendy Restaurants");
 $("#result-recipe-header").text("Trendy Recipes");
-populateRestaurants("trendy restaurant", 4);
+populateRestaurants("trendy restaurant");
 populateRecipes("");
 
 
