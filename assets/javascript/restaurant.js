@@ -15,7 +15,8 @@ function showRestaurant(restaurantId) {
         $("#details").append("<p>Phone Number: "+response.display_phone+"<p>");
         $("#details").append("<p>Rating: "+response.rating+"<p>");
         $("#details").append("<p>Review Count: "+response.review_count+"<p>");
-        $("#details").append("<p>Yelp URL: "+response.url+"<p>");
+        // $("#details").append("<p>Yelp URL: "+response.url+"<p>");
+        $("#details").append("<a href='" + response.url +"'>Click to Read the Yelp Reviews</a>");
         });
         // save to local storage
     };

@@ -2,6 +2,7 @@ function buildRecipeQueryURL(searchStr) {
     var queryURL = "https://www.food2fork.com/api/search?";
     var queryParams = { "key": "bb406a742ced5a8a94ef92e03ff0b5c2" };
 
+    var queryParams = { "key": "705ea316cb21958e2336fa872f878f61" };
     queryParams.q = searchStr;
     queryParams.page = 1;
 
